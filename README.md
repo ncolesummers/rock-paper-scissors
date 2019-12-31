@@ -1,0 +1,1 @@
+This is a simple implementation of the game Rock, Paper, Scissors created as an exercise of The Odin Project.
