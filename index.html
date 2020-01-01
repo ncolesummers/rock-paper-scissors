@@ -8,7 +8,18 @@
 </head>
 <body>
   <script>
-  
+
+function getRandomInt() {
+  return Math.floor(Math.random() * Math.floor(3));
+}
+
+function computerPlay() {
+  outcomes = ["Rock", "Paper", "Scissors"];
+  return outcomes[getRandomInt()]
+}
+
+console.log(computerPlay());
+
   </script>
 </body>
 </html>
