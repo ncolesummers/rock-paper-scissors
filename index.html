@@ -9,16 +9,63 @@
 <body>
   <script>
 
-function getRandomInt() {
-  return Math.floor(Math.random() * Math.floor(3));
-}
 
-function computerPlay() {
-  outcomes = ["Rock", "Paper", "Scissors"];
-  return outcomes[getRandomInt()]
-}
 
-console.log(computerPlay());
+    function getRandomInt() {
+      return Math.floor(Math.random() * Math.floor(3));
+    }
+
+    function computerPlay() {
+      outcomes = ["rock", "paper", "scissors"];
+      return outcomes[getRandomInt()]
+    }
+
+    // console.log(computerPlay());
+
+    function playRound(playerSelection, computerSelection) {
+      let playerChoice = playerSelection.toLowerCase();
+      let win = `Congratulations!  ${playerChoice} beats ${computerSelection}.`
+      let loss = `Failure!  ${computerSelection} beats ${playerChoice}.`
+      let draw = `Draw!  Nobody wins.`
+      
+
+      switch(computerSelection) {
+        case "rock":
+          if (playerChoice === 'paper') {
+            return win;
+          } else if (playerChoice === 'rock') {
+            return draw;
+          } else if (playerChoice === 'scissors') {
+            return loss;
+          }
+          break;
+
+        case "paper":
+        if (playerChoice === 'paper') {
+            return draw;
+          } else if (playerChoice === 'rock') {
+            return loss;
+          } else if (playerChoice === 'scissors') {
+            return win;
+          }
+          break;
+
+        case "scissors":
+        if (playerChoice === 'paper') {
+            return loss;
+          } else if (playerChoice === 'rock') {
+            return win;
+          } else if (playerChoice === 'scissors') {
+            return draw;
+          }
+          break;
+      }
+
+    }
+
+    const playerSelection = 'rock';
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
 
   </script>
 </body>
