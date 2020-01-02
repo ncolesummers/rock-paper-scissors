@@ -63,9 +63,37 @@
 
     }
 
-    const playerSelection = 'rock';
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
+    function game() {
+      let playerScore = 0;
+      let computerScore = 0;
+
+      for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Please choose rock, paper, or scissors to play")
+        let computerSelection = computerPlay();
+        let outcome = playRound(playerSelection, computerSelection);
+        if (outcome.charAt(0) === 'C') {
+          playerScore++
+          console.log(`You win this round!  Your score: ${playerScore} Computer Score: ${computerScore}`)
+        } else if (outcome.charAt(0) === 'F') {
+          computerScore++
+          console.log(`You lose this round!  Your score: ${playerScore} Computer Score: ${computerScore}`)
+
+        } else {
+          console.log(`This round was a draw.  Your score: ${playerScore} Computer Score: ${computerScore}`)
+          continue
+        }
+
+      }
+
+      finalResult = (playerScore > computerScore) ? `You win the game!  Your score: ${playerScore} Computer Score: ${computerScore}` : `You lost the game!  Your score: ${playerScore} Computer Score: ${computerScore}`;
+      console.log(finalResult)
+      return;
+    }
+
+    game();
+    // const playerSelection = prompt("Please choose rock, paper, or scissors to play");
+    // const computerSelection = computerPlay();
+    // console.log(playRound(playerSelection, computerSelection));
 
   </script>
 </body>
