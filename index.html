@@ -5,10 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script>
 
+  <div class="page-container">
+    <div class="button-container">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+
+    <div class="result-container">
+
+    </div>
+
+    <div class="scoring-container">
+      <p>Player Wins: <span id="playerWin">0</span></p>
+      <p>Computer Wins: <span id="computerWin">0</span></p>
+      <p>Draw: <span id="draw">0</span></p>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      game(button.textContent)
+    })
+  })
+  const playerWin = document.querySelector('#playerWin');
+  const computerWin = document.querySelector('#computerWin');
+  const draw = document.querySelector('#draw')
+  const result = document.querySelector('.result-container')
 
 
     function getRandomInt() {
@@ -23,6 +62,7 @@
     // console.log(computerPlay());
 
     function playRound(playerSelection, computerSelection) {
+      // console.log(playerSelection)
       let playerChoice = playerSelection.toLowerCase();
       let win = `Congratulations!  ${playerChoice} beats ${computerSelection}.`
       let loss = `Failure!  ${computerSelection} beats ${playerChoice}.`
@@ -63,38 +103,48 @@
 
     }
 
-    function game() {
-      let playerScore = 0;
-      let computerScore = 0;
+    function game(playerSelection) {
+      // let playerScore = 0;
+      // let computerScore = 0;
 
-      for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Please choose rock, paper, or scissors to play")
+      // for (let i = 0; i < 5; i++) {
+        // let playerSelection = prompt("Please choose rock, paper, or scissors to play")
         let computerSelection = computerPlay();
         let outcome = playRound(playerSelection, computerSelection);
         if (outcome.charAt(0) === 'C') {
-          playerScore++
-          console.log(`You win this round!  Your score: ${playerScore} Computer Score: ${computerScore}`)
+          playerWin.textContent++;
+          // alert(`You win this round!`)
         } else if (outcome.charAt(0) === 'F') {
-          computerScore++
-          console.log(`You lose this round!  Your score: ${playerScore} Computer Score: ${computerScore}`)
+          computerWin.textContent++;
+          // alert(`You lose this round!`)
 
         } else {
-          console.log(`This round was a draw.  Your score: ${playerScore} Computer Score: ${computerScore}`)
-          continue
+          // alert(`This round was a draw.`)
+          draw.textContent++;
         }
+        result.textContent = outcome; 
 
+      //  }
+ 
+      // finalResult = (playerScore > computerScore) ? `You win the game!  Your score: ${playerScore} Computer Score: ${computerScore}` : `You lost the game!  Your score: ${playerScore} Computer Score: ${computerScore}`;
+      // console.log(finalResult)
+
+      if (playerWin.textContent == 5) {
+        alert('You beat the computer!')
+        reset();
       }
-
-      finalResult = (playerScore > computerScore) ? `You win the game!  Your score: ${playerScore} Computer Score: ${computerScore}` : `You lost the game!  Your score: ${playerScore} Computer Score: ${computerScore}`;
-      console.log(finalResult)
+      if (computerWin.textContent == 5) {
+        alert('The computer Wins!')
+        reset();
+      }
       return;
     }
-
-    game();
-    // const playerSelection = prompt("Please choose rock, paper, or scissors to play");
-    // const computerSelection = computerPlay();
-    // console.log(playRound(playerSelection, computerSelection));
-
+ 
+    function reset() {
+      playerWin.textContent = '0'
+      computerWin.textContent = '0'
+      draw.textContent = '0'
+    }
   </script>
 </body>
 </html>
